@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice Game</title>
+    <style>
+        *{
+            margin: 12px;        
+        }
+        .container{        
+          margin:auto;
+          width: 70%;
+          border: 2px solid rebeccapurple;
+        }
+        .rollit{
+            text-decoration: none;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        .rollit:hover{
+            color:seagreen;
+            border-style: inset;
+            background-color: rgb(219, 210, 202);
+        }
+        .content{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        
+    </style>
+    <script>
+        function roll(){
+            var rand=[Math.floor(Math.random()*6)+1]; 
+            var vid = document.getElementById("control");
+            var win = document.getElementById("winner");
+             function playMusic() {
+            vid.play();
+                } 
+             function playit() {
+            win.play();
+                }    
+
+            document.getElementById('content').innerHTML="<img src='image/loader.gif'>";
+            
+         setTimeout(function (){   //as random starts with 0 so we add +1 so it will shown from 1
+          document.getElementById('content').innerHTML="<img src='image/"+rand+".png'>"; },1800);
+           if(rand==6){
+           setTimeout(function() {            
+                document.getElementById('content').innerHTML="<img src='image/winner.gif'>";
+                playit();
+                },2800);    }
+            else{
+           setTimeout(function() {            
+                playMusic();
+                },1800);    }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+    <button  onclick="roll()" onclick="playaudio()" class="rollit">Roll</button>
+   <div id="content" class="content">
+   </div>
+   <audio id="control">
+    <source src="loser.mp3" type="audio/mpeg">
+   </audio>
+   <audio id="winner">
+    <source src="tada.mp3" type="audio/mpeg">
+   </audio>
+    </div>
+</body>
+</html>
